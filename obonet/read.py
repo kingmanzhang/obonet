@@ -60,7 +60,7 @@ def get_sections(lines):
     where `typedefs`, `terms`, and `instances` are lists of
     dictionaries and `header` is a dictionary.
     """
-    typedefs, terms, instances = [], [], []
+    typedefs, terms, instances, header = [], [], [], {}
     groups = itertools.groupby(lines, lambda line: line.strip() == '')
     for is_blank, stanza_lines in groups:
         if is_blank:
