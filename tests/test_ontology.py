@@ -35,3 +35,11 @@ class TestOntologyClass:
         assert(len(self.onto.term_id_2_label_map()) > 0)
         assert(self.onto.term_id_2_label_map()[self.root] == 'taxonomic_rank')
         assert (self.onto.term_id_2_label_map()['TAXRANK:0000001'] == 'phylum')
+
+    def test_graph(self):
+        shallowcopy = self.onto.nx_graph()
+        deepcopy = self.onto.nx_graph(deepcopy=True)
+
+        shallowcopy.remove_node('TAXRANK:0000004')
+        assert(len(shallowcopy.nodes) == len(self.onto.graph.nodes))
+        assert(len(deepcopy.nodes) != len(self.onto.graph.nodes))
