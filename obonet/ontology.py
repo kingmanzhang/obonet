@@ -1,4 +1,4 @@
-from .read import read_obo
+from obonet import read_obo
 import networkx as nx
 import copy
 
@@ -14,10 +14,10 @@ class Ontology:
         return nx.ancestors(self.graph, term_id)
 
     def parents(self, term_id):
-        return list(self.graph[term_id].keys())
+        return frozenset(self.graph[term_id].keys())
 
     def children(self, term_id):
-        return list(self.graph.predecessors(term_id))
+        return frozenset(self.graph.predecessors(term_id))
 
     def terms(self):
         all_terms = copy.deepcopy(self.graph.nodes)

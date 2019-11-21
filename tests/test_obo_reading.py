@@ -1,8 +1,6 @@
 import os
 import pathlib
-
 import pytest
-
 import obonet
 from obonet.read import parse_tag_line
 
